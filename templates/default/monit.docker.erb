@@ -1,0 +1,4 @@
+check process docker with pidfile /var/run/docker.pid
+   start program = "/usr/bin/docker -d"
+   stop program = "/bin/kill `cat /var/run/docker.pid`"
+   if 5 restarts within 5 cycles then timeout
