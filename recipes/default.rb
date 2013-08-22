@@ -30,8 +30,7 @@ if Chef::Config[:solo]
   package 'kernel-ml-aufs-devel'
 end
 
-package 'docker-io' do
-end
+%w(docker-io xz).each { |pkg| package pkg }
 
 include_recipe 'grub'
 
