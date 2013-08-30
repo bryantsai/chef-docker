@@ -51,7 +51,7 @@ end
 
 # init
 template '/etc/init.d/docker-registry' do
-  source 'init.rb'
+  source 'init.erb'
   mode 0755
 end
 
