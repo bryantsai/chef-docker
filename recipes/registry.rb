@@ -20,7 +20,7 @@ include_recipe 'docker::user'
 include_recipe 'nginx'
 
 # dependencies
-%w(openssl-devel python-devel libevent-devel python-pip).each { |pkg| package pkg}
+%w(make gcc openssl-devel python-devel libevent-devel python-pip).each { |pkg| package pkg}
 
 # installation
 [node[:docker][:registry][:basedir], node[:docker][:registry][:storagedir]].each do |dir|
