@@ -7,3 +7,4 @@ default[:docker][:registry][:basedir] = '/opt/docker-registry'
 default[:docker][:registry][:storagedir] = '/data/docker-registry'
 default[:docker][:registry][:version] = '0.5.9'
 default[:docker][:registry][:nginx][:enable] = true
+default[:docker][:registry][:nginx][:hostname] = 'docker'

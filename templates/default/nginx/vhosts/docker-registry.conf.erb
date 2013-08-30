@@ -1,6 +1,6 @@
 server {
   listen        80;
-  server_name   <%= node[:hostname] %> <%= node[:fqdn] %>;
+  server_name   <%= node[:docker][:registry][:nginx][:hostname] %> <%= node[:hostname] %> <%= node[:fqdn] %>;
 
   location / {
 
