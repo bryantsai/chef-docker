@@ -1,0 +1,4 @@
+check process gunicorn with pidfile /var/run/docker-registry.pid
+  start program = "SETTINGS_FLAVOR=prod gunicorn -k gevent --max-requests 100 --graceful-timeout 3600 -t 3600 -b localhost:5000 -w 8 wsgi:application -p /var/run/docker-registry.pid -u docker -g docker -c <%= node[:docker][:registry][:basedir] %>/config.yml"
+  stop program = "kill `cat /var/run/docker-registry.pid`"
+  if 5 restarts within 5 cycles then timeout

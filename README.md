@@ -6,8 +6,6 @@ You need to install the vagrant-vbguest plugin.
 
 `vagrant plugin install vagrant-vbguest`
 
-# TODO
-+ LWRP to manage containers
 # Usage
 
 # Attributes

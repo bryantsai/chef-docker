@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe 'docker::user'
 include_recipe 'yum'
 
 yum_repository 'hop5' do

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: docker
-# Recipe:: monit
+# Recipe:: user
 #
 # Copyright (C) 2013 Jean-Francois Theroux
 # 
@@ -16,17 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package 'monit'
-
-template '/etc/monit.d/docker' do
-  source 'monit.docker.erb'
-  mode 0644
-  notifies :restart, 'service[monit]', :delayed
-end
-
-service 'monit' do
-  action [ :start, :enable ]
-  # can't start monit if we're not running the appropriate kernel.
-  # docker will fail. and vagrant kills the vm?
-  only_if { node[:kernel][:release] == node[:docker][:kernel][:version] }
+user 'docker' do
+  system true
 end

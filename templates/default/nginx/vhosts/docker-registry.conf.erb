@@ -1,0 +1,25 @@
+server {
+  listen        80;
+  server_name   <%= node[:hostname] %> <%= node[:fqdn] %>;
+
+  location / {
+
+    proxy_pass        http://localhost:5000;
+    proxy_set_header  X-Real-IP  $remote_addr;
+
+    <% if node[:nginx][:modsecurity][:enable] == true %>
+    # modsecurity
+    ModSecurityEnabled on;
+    ModSecurityConfig modsecurity.conf;
+    <% end %>
+  }
+
+  location = /favicon.ico {
+    return 204;
+  }
+
+  error_page    500 502 503 504 /50x.html;
+  location = /50x.html {
+    root        /usr/share/nginx/html;
+  }
+}
