@@ -56,3 +56,14 @@ case node[:docker][:init]
   when 'monit'
     include_recipe 'docker::monit'
 end
+
+# ip forwarding
+execute 'manually enable ip forwarding' do
+  command 'sysctl -w net.ipv4.ip_forward=1'
+  not_if "sysctl -a | grep 'net.ipv4.ip_forward = 1'"
+end
+
+execute 'permanently enabling ip forwarding' do
+  command "echo 'net.ipv4.ip_forward = 1 # configured by Chef' >> /etc/sysctl.conf"
+  not_if "grep '^net.ipv4.ip_forward = 1' /etc/sysctl.conf"
+end
